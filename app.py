@@ -2,6 +2,9 @@ import json
 import os
 import requests
 import random
+from dotenv import load_dotenv
+
+load_dotenv()
 
 REFRESH_TOKEN = os.getenv('REFRESH_TOKEN')
 
@@ -142,7 +145,7 @@ def do_gamified_ads_quiz():
             break
         if not response[0]["result"]["data"]["json"]["isClosed"]:
             for day in response[0]["result"]["data"]["json"]["days"]:
-                if not day["isPlayed"]:
+                if not day["isPlayed"] or day["canReplay"]:
                     if not day["isUnlocked"]:
                         data = {
                             "0": {
@@ -182,7 +185,7 @@ def do_gamified_ads_quiz():
                                 "dayId": day["id"],
                                 "campaignId": campaign_id,
                                 "answerIds": correct_answers,
-                                "completionTime": random.randint(0, 50),
+                                "completionTime": random.randint(0, 10),
                                 "timezone": "Africa/Tunis"
                             }
                         }
