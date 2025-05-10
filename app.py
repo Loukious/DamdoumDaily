@@ -185,7 +185,7 @@ def do_gamified_ads_quiz():
                                 "dayId": day["id"],
                                 "campaignId": campaign_id,
                                 "answerIds": correct_answers,
-                                "completionTime": random.randint(0, 10),
+                                "completionTime": random.randint(0, 1),
                                 "timezone": "Africa/Tunis"
                             }
                         }
